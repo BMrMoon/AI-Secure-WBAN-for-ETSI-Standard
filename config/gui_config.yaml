@@ -1,0 +1,617 @@
+window:
+  title: "SmartBAN Simulation"
+  size: "1000x500"
+  columnconfigure:
+    - index:  0
+      weight: 1
+    - index:  1
+      weight: 1
+  rowconfigure:
+    - index:  0
+      weight: 1
+components:
+  - type: "Frame"
+    name: "Simulation Output"
+    options:
+      relief: "ridge"
+      borderwidth: 2
+    functions:
+      grid:
+        - row: 0
+          column: 0
+          columnspan: 1
+          rowspan:  1
+          sticky: "nsew"
+      columnconfigure:
+        - index:  0
+          weight: 1
+      rowconfigure:
+        - index:  0
+          weight: 1
+        - index:  1
+          weight: 20
+
+    children:
+      - type: "Label"
+        name: "Log Label"
+        options:
+          text: "Log"
+          relief: "ridge"
+        functions:
+          grid:
+            - row: 0
+              column: 0
+              columnspan: 1
+              rowspan:  1
+              sticky: "nsew"
+      - type: "Text"
+        name: "Log Text"
+        functions:
+          grid:
+            - row: 1
+              column: 0
+              columnspan: 1
+              rowspan:  1
+              sticky: "nsew"
+
+  - type: "Frame"
+    name: "Input Parameters"
+    options:
+      relief: "ridge"
+      borderwidth: 2
+    functions:
+      grid:
+        - row: 0
+          column: 1
+          columnspan: 1
+          rowspan:  1
+          sticky: "nsew"
+      columnconfigure:
+        - index:  0
+          weight: 1
+      rowconfigure:
+        - index:  0
+          weight: 20
+        - index:  1
+          weight: 1
+    children:
+      - type: "Notebook"
+        name: "inputTabControl"
+        functions:
+          add:
+            - child:  "Application Tab"
+              text: "Application"
+            - child:  "MAC Tab"
+              text: "MAC"
+            - child:  "PHY Tab"
+              text: "PHY"
+            - child:  "Channel Tab"
+              text: "Channel"
+          grid:
+          - row: 0
+            column: 0
+            columnspan: 1
+            rowspan:  1
+            sticky: "nsew"
+        children:
+          - type: "Frame"
+            name: "Application Tab"
+            functions:
+              columnconfigure:
+                - index:  0
+                  weight: 1
+                - index:  1
+                  weight: 1
+              rowconfigure:
+                - index:  0
+                  weight: 1
+                - index:  1
+                  weight: 1
+                - index:  2
+                  weight: 1
+                - index:  3
+                  weight: 1
+                - index:  4
+                  weight: 1
+                - index:  5
+                  weight: 1
+                - index:  6
+                  weight: 1
+                - index:  7
+                  weight: 3
+            children:
+              - type: "Label"
+                name: "Node Number Label"
+                options:
+                  text: "Number of Nodes"
+                functions:
+                  grid:
+                    - row: 0
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Entry"
+                name: "Node Number Entry"
+                functions:
+                  grid:
+                    - row: 0
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Label"
+                name: "Hub Number Label"
+                options:
+                  text: "Number of Hubs"
+                functions:
+                  grid:
+                    - row: 1
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Entry"
+                name: "Hub Number Entry"
+                functions:
+                  grid:
+                    - row: 1
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Label"
+                name: "Frame Number Label"
+                options:
+                  text: "Numper of frames to generate"
+                functions:
+                  grid:
+                    - row: 2
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Entry"
+                name: "Frame Number Entry"
+                functions:
+                  grid:
+                    - row: 2
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Label"
+                name: "Jamming Attack Label"
+                options:
+                  text: "Jamming Attack"
+                functions:
+                  grid:
+                    - row: 3
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Combobox"
+                name: "Jamming Attack Combobox"
+                options:
+                  state:  "readonly"
+                functions:
+                  grid:
+                    - row: 3
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "we"
+              - type: "Label"
+                name: "Replay Attack Label"
+                options:
+                  text: "Replay Attack"
+                functions:
+                  grid:
+                    - row: 4
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Combobox"
+                name: "Replay Attack Combobox"
+                options:
+                  state:  "readonly"
+                functions:
+                  grid:
+                    - row: 4
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "we"
+              - type: "Label"
+                name: "Packet Injection Attack Label"
+                options:
+                  text: "Packet Injection Attack"
+                functions:
+                  grid:
+                    - row: 5
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Combobox"
+                name: "Packet Injection Attack Combobox"
+                options:
+                  state:  "readonly"
+                functions:
+                  grid:
+                    - row: 5
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "we"
+              - type: "Label"
+                name: "Random Seed Label"
+                options:
+                  text: "Random Seed"
+                functions:
+                  grid:
+                    - row: 6
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Entry"
+                name: "Random Seed Entry"
+                functions:
+                  grid:
+                    - row: 6
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+          - type: "Frame"
+            name: "MAC Tab"
+            functions:
+              columnconfigure:
+                - index:  0
+                  weight: 1
+                - index:  1
+                  weight: 1
+              rowconfigure:
+                - index:  0
+                  weight: 1
+                - index:  1
+                  weight: 9
+            children:
+              - type: "Label"
+                name: "Retransmission Label"
+                options:
+                  text: "Retransmission"
+                functions:
+                  grid:
+                    - row: 0
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Combobox"
+                name: "Retransmission Combobox"
+                options:
+                  state:  "readonly"
+                functions:
+                  grid:
+                    - row: 0
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "we"
+          - type: "Frame"
+            name: "PHY Tab"
+            functions:
+              columnconfigure:
+                - index:  0
+                  weight: 1
+                - index:  1
+                  weight: 1
+              rowconfigure:
+                - index:  0
+                  weight: 1
+                - index:  1
+                  weight: 1
+                - index:  2
+                  weight: 1
+                - index:  3
+                  weight: 1
+                - index:  4
+                  weight: 1
+                - index:  5
+                  weight: 5
+            children:
+              - type: "Label"
+                name: "PPDU Repetition Label"
+                options:
+                  text: "PPDU Repetition"
+                functions:
+                  grid:
+                    - row: 0
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Combobox"
+                name: "PPDU Repetition Combobox"
+                options:
+                  state:  "readonly"
+                functions:
+                  grid:
+                    - row: 0
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "we"
+              - type: "Label"
+                name: "BCH Encoding Label"
+                options:
+                  text: "BCH Encoding"
+                functions:
+                  grid:
+                    - row: 1
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Combobox"
+                name: "BCH Encoding Combobox"
+                options:
+                  state:  "readonly"
+                functions:
+                  grid:
+                    - row: 1
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "we"
+              - type: "Label"
+                name: "Frame Size Label"
+                options:
+                  text: "Frame Size [bytes]"
+                functions:
+                  grid:
+                    - row: 2
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Entry"
+                name: "Frame Size Entry"
+                functions:
+                  grid:
+                    - row: 2
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Label"
+                name: "Frame Generation Rate Label"
+                options:
+                  text: "Frame Generation Rate [frames/s]"
+                functions:
+                  grid:
+                    - row: 3
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Entry"
+                name: "Frame Generation Rate Entry"
+                functions:
+                  grid:
+                    - row: 3
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Label"
+                name: "Lslot Label"
+                options:
+                  text: "Lslot"
+                functions:
+                  grid:
+                    - row: 4
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Combobox"
+                name: "Lslot Combobox"
+                options:
+                  state:  "readonly"
+                functions:
+                  grid:
+                    - row: 4
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "we"
+          - type: "Frame"
+            name: "Channel Tab"
+            functions:
+              columnconfigure:
+                - index:  0
+                  weight: 1
+                - index:  1
+                  weight: 1
+              rowconfigure:
+                - index:  0
+                  weight: 1
+                - index:  1
+                  weight: 1
+                - index:  2
+                  weight: 1
+                - index:  3
+                  weight: 1
+                - index:  4
+                  weight: 1
+                - index:  5
+                  weight: 5
+            children:
+              - type: "Label"
+                name: "Eb/N0 Label"
+                options:
+                  text: "Eb/N0 [dB]"
+                functions:
+                  grid:
+                    - row: 0
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Entry"
+                name: "Eb/N0 Entry"
+                functions:
+                  grid:
+                    - row: 0
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Label"
+                name: "Fading Channel Label"
+                options:
+                  text: "Fading Channel"
+                functions:
+                  grid:
+                    - row: 1
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Combobox"
+                name: "Fading Channel Combobox"
+                options:
+                  state:  "readonly"
+                functions:
+                  grid:
+                    - row: 1
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "we"
+              - type: "Label"
+                name: "Interference Label"
+                options:
+                  text: "Interference"
+                functions:
+                  grid:
+                    - row: 2
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Combobox"
+                name: "Interference Combobox"
+                options:
+                  state:  "readonly"
+                functions:
+                  grid:
+                    - row: 2
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "we"
+              - type: "Label"
+                name: "Frequency of Interference Label"
+                options:
+                  text: "Frequency of Interference"
+                functions:
+                  grid:
+                    - row: 3
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Combobox"
+                name: "Frequency of Interference Combobox"
+                options:
+                  state:  "readonly"
+                functions:
+                  grid:
+                    - row: 3
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Label"
+                name: "Distance Label"
+                options:
+                  text: "Distance [cm] (Channel Model)"
+                functions:
+                  grid:
+                    - row: 4
+                      column: 0
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "w"
+              - type: "Entry"
+                name: "Distance Entry"
+                functions:
+                  grid:
+                    - row: 4
+                      column: 1
+                      columnspan: 1
+                      rowspan:  1
+                      sticky: "we"
+      - type: "Frame"
+        name: "inputButtonGroup"
+        options:
+          relief: "sunken"
+          borderwidth:  2
+        functions:  
+          grid:
+            - row: 1
+              column: 0
+              columnspan: 1
+              rowspan:  1
+              sticky: "sew"
+          columnconfigure:
+            - index:  0
+              weight: 1
+            - index:  1
+              weight: 1
+            - index:  2
+              weight: 1
+          rowconfigure:
+            - index:  1
+              weight: 1
+        children:
+          - type: "Button"
+            name: "Dataset Button"
+            command:  "browse_folder"
+            options:
+              text: "File Location"
+              state:  "enabled"
+            functions:  
+              grid:
+                - row: 0
+                  column: 0
+                  columnspan: 1
+                  rowspan:  1
+                  sticky: "ew"
+          - type: "Entry"
+            name: "File Name Entry"
+            functions:
+              grid:
+                - row: 0
+                  column: 1
+                  columnspan: 1
+                  rowspan:  1
+                  sticky: "we"
+          - type: "Button"
+            name: "Run Button"
+            command:  "start_simulation"
+            options:
+              text: "Run"
+            functions:  
+              grid:
+                - row: 0
+                  column: 2
+                  columnspan: 1
+                  rowspan:  1
+                  sticky: "ew"

@@ -1,0 +1,24 @@
+{
+    "Node Number Entry": 8,
+    "Hub Number Entry": 1,
+    "Frame Number Entry": 1000,
+    "Jamming Attack Combobox": "off",
+    "Replay Attack Combobox": "off",
+    "Packet Injection Attack Combobox": "off",
+    "Random Seed Entry": 24,
+    "Retransmission Combobox": "off",
+    "PPDU Repetition Combobox": 4,
+    "BCH Encoding Combobox": "on",
+    "Frame Size Entry": 50,
+    "Frame Generation Rate Entry": 1000000,
+    "Lslot Combobox": 1,
+    "Eb/N0 Entry": {
+        "start": 15,
+        "stop": 80,
+        "step": 0.25
+    },
+    "Fading Channel Combobox": "off",
+    "Interference Combobox": "off",
+    "Frequency of Interference Combobox": "low",
+    "Distance Entry": 50
+}

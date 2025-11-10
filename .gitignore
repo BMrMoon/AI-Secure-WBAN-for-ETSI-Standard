@@ -4,6 +4,7 @@
 gui/__pycache__/
 network/__pycache__/
 simulation/__pycache__/
+results/*
 
 ### macOS ###
 # General

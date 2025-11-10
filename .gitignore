@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos
 
+gui/__pycache__/
+network/__pycache__/
+simulation/__pycache__/
+
 ### macOS ###
 # General
 .DS_Store

@@ -9,6 +9,10 @@ import matplotlib.pyplot as plt
 from itertools import chain
 
 def plotter(values):
+    """Build to observe GFSK demodulator output.
+        
+        values: dictionary with key value pairs
+        """
     keys = list(values.keys())
     fig, axes = plt.subplots(len(keys), 1)
     for index in range(len(keys)):
@@ -19,9 +23,11 @@ def plotter(values):
     plt.show()
 
 def binary_partition_sequence(sequence, chunk_size):
+    """Partitioner for BCH encoder."""
     return [sequence[i:i + chunk_size] for i in range(0, len(sequence), chunk_size)]
 
 def bch_encoder(MPDU, n, k, fragment_size):
+    """n-k: number of parity bits"""
     x = symbols('x', real=True)
     generator_polynomial = Poly(x**14 + x**9 + x**8 + x**6 + x**5 + x**4 + x**2 + x + 1, x, modulus=2)
 
@@ -49,25 +55,9 @@ def bch_encoder(MPDU, n, k, fragment_size):
         PSDU.extend(psdu)
     return PSDU
 
-def crc(data_bits, crc_poly_list):
-    x = symbols('x')
-    # Define the CRC polynomial 1 + x + x^4 -> x^4 + x + 1
-    # In sympy, we represent this polynomial as a Poly object:
-    crc_poly = Poly(crc_poly_list, x, modulus=2)  # x^4 + x + 1
-    
-    # Create a polynomial for the combined data
-    data_poly = Poly(data_bits, x, modulus=2)
-    
-    # Perform the polynomial division to find the remainder (CRC result)
-    quotient, remainder = div(data_poly, crc_poly)
-    
-    # The remainder is the Header Parity, we take the remainder's coefficients (last 4 bits)
-    header_parity_bits = remainder.coeffs()[-(len(crc_poly_list)-1):]  # Get the last 4 bits of the remainder
-    header_parity_bits = [0] * ((len(crc_poly_list)-1) - len(header_parity_bits)) + header_parity_bits
-    
-    return header_parity_bits
 
 def crc_encoder(data, key):
+    """Cyclic redundancy check"""
     def xor(a, b):
  
         # initialize result

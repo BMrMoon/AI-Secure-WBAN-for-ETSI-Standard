@@ -1,0 +1,21 @@
+name: wban39
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - numpy
+  - pandas
+  - matplotlib
+  - icecream
+  - tqdm
+  - jmcmurray::json
+  - anaconda::yaml
+  - anaconda::tk
+  - anaconda::sympy
+  - anaconda::scipy
+  - anaconda::scikit-learn
+  - conda-forge::deap
+  - prettytable
+  - conda-forge::seaborn
+  - anaconda::pyyaml
+prefix: /Users/berkaybey/miniforge3/envs/wban39

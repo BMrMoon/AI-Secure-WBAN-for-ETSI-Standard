@@ -52,7 +52,7 @@ conda activate wban_env
 conda install --file requirements.txt
 
 # 4. Launch Simulator (GUI)
-python Simulator/main_gui.py
+python Simulator/gui/main_gui.py
 
 # 5. Execute Genetic Optimizer
 # Now located at: Deep-Learning/HyperparameterTuning/run.py

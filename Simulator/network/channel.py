@@ -6,12 +6,6 @@ import matplotlib.pyplot as plt
 
 class channel():
     def __init__(self, smartBAN_config, signal, distance):
-        """
-            smartBAN_config: selections either from GUI or smartBAN_config file
-            signal: modulated signaş from transmitter
-            distance: distance between transmitter node and hub
-            """
-
         start = eval(smartBAN_config["Eb/N0 Entry"])["start"]
         stop = eval(smartBAN_config["Eb/N0 Entry"])["stop"]
         step = eval(smartBAN_config["Eb/N0 Entry"])["step"]
@@ -26,7 +20,6 @@ class channel():
         self.Rsym = int(smartBAN_config["Frame Generation Rate Entry"])
     
     def ricean_fading(self, signal):
-        """Adds ricean fading."""
         def calculate_path_loss(d):
             P0 = 10 ** (-25.8 / 10)  # Convert dB to linear scale
             m0 = 2.0  # dB/cm
@@ -58,7 +51,6 @@ class channel():
         return h*signal
 
     def channel_interference(self, signal):
-        """Adds interference"""
         # Define parameters for each interference level
         fs = self.Rsym
         level = self.interference_freq
@@ -102,7 +94,6 @@ class channel():
         return received_signal
 
     def awgn(self, signal, snr):
-        """Adds AWGN to the rf signal"""
         snr_dB = snr
         #ic(snr_dB)
         # Calculate signal power

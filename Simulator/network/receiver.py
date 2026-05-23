@@ -6,10 +6,6 @@ import matplotlib.pyplot as plt
 
 
 def plotter(values):
-        """Build to observe GFSK demodulator output.
-        
-            values: dictionary with key value pairs
-            """
         keys = list(values.keys())
         fig, axes = plt.subplots(len(keys), 1)
         for index in range(len(keys)):
@@ -20,11 +16,6 @@ def plotter(values):
         plt.show()
 
 def crc_check(data_bits, crc_poly_list):
-    """Cyclic redundancy check
-    
-        data_bits: demodulatod binary data
-        crc_poly_list: Binary list for polynomial calculation
-    """
     x = symbols('x')
     # Define the CRC polynomial 1 + x + x^4 -> x^4 + x + 1
     # In sympy, we represent this polynomial as a Poly object:
@@ -39,7 +30,6 @@ def crc_check(data_bits, crc_poly_list):
     return remainder.coeffs()
 
 def binary_partition_sequence(sequence, chunk_size):
-    """Partitioner for BCH decoder. (Not used yet)"""
     return [sequence[i:i + chunk_size] for i in range(0, len(sequence), chunk_size)]
 
 def compute_syndromes(received, generator_polynomial, x):

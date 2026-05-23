@@ -11,10 +11,6 @@ import os
 
 class SmartBANApp:
     def __init__(self, root, config_path):
-        """
-        config_path : path to configurations file
-        root : Tkinter root
-            """
         self.root = root
         self.config_path = config_path
         self.components = {}
@@ -23,17 +19,15 @@ class SmartBANApp:
         self.dataset_file = self.initial_path+'/results/data/dataset.csv'
 
     def load_gui_config(self):
-        """Load the GUI configuration file."""
+        """Load the YAML configuration file."""
         with open(self.config_path+"/gui_config.yaml", "r") as file:
             return yaml.safe_load(file)
         
     def load_simulation_config(self):
-        """Load the simulation configuration file."""
         with open(self.config_path+"/smartBAN_config.json", "r") as file:
             return json.load(file)
     
     def set_default(self):
-        """Sets GUI selections to the default smartBAN simulation parameters"""
         simulation_config = self.load_simulation_config()
         for component in simulation_config:
             if component.endswith("Entry"):
@@ -55,7 +49,6 @@ class SmartBANApp:
                 #print(self.components[component].cget("variable"))
                 #checkbuttonvar.set(1)
     def get_parameters(self, simulation_config):
-        """Creates the components dictionary to make it autonome"""
         parameters = {}
         for component in simulation_config:
             try:
@@ -93,7 +86,6 @@ class SmartBANApp:
 
         #self.components["Log Text"]['state'] = 'disabled'
     def create_component(self, parent, config):
-        """Creates the component widgets"""
         try:
             widget_class = getattr(ttk, config["type"])
             if "options" in config:
@@ -147,10 +139,16 @@ class SmartBANApp:
         """Open file dialog to select a folder."""
         self.dataset_folder_path = filedialog.askdirectory()
 
+    """def check_file(self, path):
+        file_list = []
+        for f in os.listdir(path):
+            file_list.append(f)
+            if self.components["File Name Entry"].get()+'.csv' in file_list:
+                pass
+            else:
+                self.dataset_file = path + '/' + self.components["File Name Entry"].get()+'.csv'"""
 
     def check_file(self):
-        """Checks the path if given filename is exists.
-            If exists, it adds the new datas into that dile, and it will creates at the end in vice ersa."""
         if hasattr(self, "dataset_folder_path"):
             self.initial_path = self.dataset_folder_path
             name = self.components["File Name Entry"].get()
@@ -191,7 +189,9 @@ class SmartBANApp:
             messagebox.showerror("Error", f"Failed to start simulation: {traceback.format_exc()}")
 
 
-    
+    def show_visualization(self):
+        """Open visualization window."""
+        Visualization().show()
 
 if __name__ == "__main__":
     root = tk.Tk()

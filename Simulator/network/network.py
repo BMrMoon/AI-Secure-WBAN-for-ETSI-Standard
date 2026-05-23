@@ -5,11 +5,9 @@ from icecream import ic
 
 
 class network():
-    def __init__(self, smartBAN_config):
-        """
-            smartBAN_config: selections either from GUI or smartBAN_config file
-            """
-        self.smartBAN_config = smartBAN_config
+
+    def __init__(self, config):
+        self.smartBAN_config = config
         if self.smartBAN_config["Random Seed Entry"]=='':
             self.devicesMAC, self.hubMAC, self.banMAC = self.generate_MAC()
             self.preamble = [random.randint(0,1) for _ in range(16)]
@@ -27,7 +25,6 @@ class network():
         self.cm_channels = [int((2402 + 2*n)*1e6) for n in range(39) if n in [0, 12, 39]]
 
     def generate_MAC(self):
-        """Generates unique MAC addresses for each element under the same BAN."""
         def MAC():
             mac = random.randint(0, 255)
             return f'{mac:02x}'
@@ -53,31 +50,20 @@ class network():
         return MAC_nodes, MAC_hubs, MAC_BAN
 
     def randomSelectMAC(self):
-        """Selects node for the next transmitter."""
         return random.choice(self.devicesMAC)
     
-    def hex2bit(self, MAC):
-        """Hexadecimel to binary converter.
-            
-            MAC: MAC address
-            """
-        return bin(int(MAC, 16))[2:].zfill(8)
+    def hex2bit(self, MACs):
+        return bin(int(MACs, 16))[2:].zfill(8)
         #return [bin(int(hexCode, 16))[2:].zfill(8) for hexCode in MACs]
 
-    def bit2hex(self, MAC):
-        """Binary to hexadecimal converter.
-         
-            MAC: MAC address
-            """
-        return hex(int(MAC, 2))[2:]
+    def bit2hex(self, MACs):
+        return hex(int(MACs, 2))[2:]
         #return [hex(int(binary, 2))[2:] for binary in MACs]
     
     def str2list_conv(self, message):
-        """String to list converter."""
         return [int(bit) for bit in message]
 
     def list2str_conv(self, message):
-        """List to string converter"""
         sequence = ''
         for bit in message:
             sequence+=str(bit)
